@@ -5,7 +5,7 @@ The VPS acts as a public entry point and port-forwarder, while your real mail se
 
 This repository contains the helper scripts used in the accompanying blog series:
 
-- **Part 1** – Prepare Debian 12 + OpenVPN Server + UFW rules  
+- **Part 1** – Prepare Debian + OpenVPN Server + UFW rules  
 - **Part 2** – pfSense OpenVPN client, gateway, NAT and firewall rules
 
 ---
@@ -64,7 +64,7 @@ Internet
 ### 1. Prepare the VPS
 
 ```bash
-curl -O https://raw.githubusercontent.com/tleadley/mailcow-openvpn-pfsense/main/prepare-debian12.sh
+curl -O https://raw.githubusercontent.com/tleadley/mailcow-openvpn-pfsense/main/prepare-debian.sh
 chmod +x 01-prepare-debian12.sh
 sudo ./01-prepare-debian12.sh
 ```
