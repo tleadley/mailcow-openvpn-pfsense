@@ -44,9 +44,9 @@ Internet
 
 | Script | Purpose |
 |--------|---------|
-| `01-prepare-debian12.sh` | Updates system, installs OpenVPN + Easy-RSA, disables IPv6, enables IP forwarding |
-| `02-setup-openvpn-server.sh` | Creates modern OpenVPN server on **UDP 1100**, generates PKI and a pfSense-compatible client `.ovpn` |
-| `03-setup-ufw-rules.sh` | Resets UFW, reads client IP from `/var/log/openvpn/ipp.txt`, applies DNAT rules for almost all ports to the OpenVPN client |
+| `prepare-debian12.sh` | Updates system, installs OpenVPN + Easy-RSA, disables IPv6, enables IP forwarding |
+| `setup-openvpn-server.sh` | Creates modern OpenVPN server on **UDP 1100**, generates PKI and a pfSense-compatible client `.ovpn` |
+| `setup-ufw-rules.sh` | Resets UFW, reads client IP from `/var/log/openvpn/ipp.txt`, applies DNAT rules for almost all ports to the OpenVPN client |
 
 ---
 
@@ -64,7 +64,7 @@ Internet
 ### 1. Prepare the VPS
 
 ```bash
-curl -O https://raw.githubusercontent.com/YOUR_USERNAME/mailcow-openvpn-pfsense/main/01-prepare-debian12.sh
+curl -O https://raw.githubusercontent.com/tleadley/mailcow-openvpn-pfsense/main/prepare-debian12.sh
 chmod +x 01-prepare-debian12.sh
 sudo ./01-prepare-debian12.sh
 ```
@@ -72,7 +72,7 @@ sudo ./01-prepare-debian12.sh
 ### 2. Install OpenVPN Server (Port 1100)
 
 ```bash
-curl -O https://raw.githubusercontent.com/YOUR_USERNAME/mailcow-openvpn-pfsense/main/02-setup-openvpn-server.sh
+curl -O https://raw.githubusercontent.com/tleadley/mailcow-openvpn-pfsense/main/setup-openvpn-server.sh
 chmod +x 02-setup-openvpn-server.sh
 sudo ./02-setup-openvpn-server.sh
 ```
@@ -90,7 +90,7 @@ Download this file — you will import it into pfSense in Part 2.
 > **Important:** Run this script **only after** the pfSense OpenVPN client has connected at least once.
 
 ```bash
-curl -O https://raw.githubusercontent.com/YOUR_USERNAME/mailcow-openvpn-pfsense/main/03-setup-ufw-rules.sh
+curl -O https://raw.githubusercontent.com/tleadley/mailcow-openvpn-pfsense/main/setup-ufw-rules.sh
 chmod +x 03-setup-ufw-rules.sh
 sudo ./03-setup-ufw-rules.sh
 ```
