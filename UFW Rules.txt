@@ -1,0 +1,79 @@
+### Before rules ###
+
+-A PREROUTING -i eth0 -p tcp -m tcp --dport 1:21 -j DNAT --to-destination 10.8.0.4:1-21
+-A PREROUTING -i eth0 -p tcp -m tcp --dport 23:1099 -j DNAT --to-destination 10.8.0.4:23-1099
+-A PREROUTING -i eth0 -p tcp -m tcp --dport 1101:65535 -j DNAT --to-destination 10.8.0.4:1101-65535
+-A PREROUTING -i eth0 -p udp -m udp --dport 1:21 -j DNAT --to-destination 10.8.0.4:1-21
+-A PREROUTING -i eth0 -p udp -m udp --dport 23:1099 -j DNAT --to-destination 10.8.0.4:23-1099
+-A PREROUTING -i eth0 -p udp -m udp --dport 1101:65535 -j DNAT --to-destination 10.8.0.4:1101-65535
+
+# Allow traffic from OpenVPN client to eth0 (change to the interface you discovered!)
+-A POSTROUTING -s 10.8.0.0/8 -o eth0 -j MASQUERADE
+
+
+# START OPENVPN RULES
+-A FORWARD -i tun0 -o eth0  -j ACCEPT
+-A FORWARD -i eth0 -o tun0  -m state --state RELATED,ESTABLISHED -j ACCEPT
+-A FORWARD -d 10.8.0.4/24 -p tcp -m tcp --dport 1:21 -m state --state NEW,RELATED,ESTABLISHED -j ACCEPT
+-A FORWARD -d 10.8.0.4/24 -p tcp -m tcp --dport 23:1099 -m state --state NEW,RELATED,ESTABLISHED -j ACCEPT
+-A FORWARD -d 10.8.0.4/24 -p tcp -m tcp --dport 1101:65535 -m state --state NEW,RELATED,ESTABLISHED -j ACCEPT
+-A FORWARD -d 10.8.0.4/24 -p udp -m udp --dport 1:21 -m state --state NEW,RELATED,ESTABLISHED -j ACCEPT
+-A FORWARD -d 10.8.0.4/24 -p udp -m udp --dport 23:1099 -m state --state NEW,RELATED,ESTABLISHED -j ACCEPT
+-A FORWARD -d 10.8.0.4/24 -p udp -m udp --dport 1101:65535 -m state --state NEW,RELATED,ESTABLISHED -j ACCEPT
+
+
+
+
+------------------------------------------------------------------------------------------------------------------
+
+
+### USER RULES ###
+
+### tuple ### deny tcp 22 0.0.0.0/0 any 0.0.0.0/0 in
+-A ufw-user-input -p tcp --dport 22 -j DROP
+
+### tuple ### allow any 80 0.0.0.0/0 any 0.0.0.0/0 in
+-A ufw-user-input -p tcp --dport 80 -j ACCEPT
+-A ufw-user-input -p udp --dport 80 -j ACCEPT
+
+### tuple ### allow any 443 0.0.0.0/0 any 0.0.0.0/0 in
+-A ufw-user-input -p tcp --dport 443 -j ACCEPT
+-A ufw-user-input -p udp --dport 443 -j ACCEPT
+
+### tuple ### allow any 25 0.0.0.0/0 any 0.0.0.0/0 in
+-A ufw-user-input -p tcp --dport 25 -j ACCEPT
+-A ufw-user-input -p udp --dport 25 -j ACCEPT
+
+### tuple ### allow any 587 0.0.0.0/0 any 0.0.0.0/0 in
+-A ufw-user-input -p tcp --dport 587 -j ACCEPT
+-A ufw-user-input -p udp --dport 587 -j ACCEPT
+
+### tuple ### allow any 465 0.0.0.0/0 any 0.0.0.0/0 in
+-A ufw-user-input -p tcp --dport 465 -j ACCEPT
+-A ufw-user-input -p udp --dport 465 -j ACCEPT
+
+### tuple ### allow any 110 0.0.0.0/0 any 0.0.0.0/0 in
+-A ufw-user-input -p tcp --dport 110 -j ACCEPT
+-A ufw-user-input -p udp --dport 110 -j ACCEPT
+
+### tuple ### allow any 995 0.0.0.0/0 any 0.0.0.0/0 in
+-A ufw-user-input -p tcp --dport 995 -j ACCEPT
+-A ufw-user-input -p udp --dport 995 -j ACCEPT
+
+### tuple ### allow any 993 0.0.0.0/0 any 0.0.0.0/0 in
+-A ufw-user-input -p tcp --dport 993 -j ACCEPT
+-A ufw-user-input -p udp --dport 993 -j ACCEPT
+
+### tuple ### allow tcp 25:65535 0.0.0.0/0 any 0.0.0.0/0 in
+-A ufw-user-input -p tcp -m multiport --dports 25:65535 -j ACCEPT
+
+### tuple ### allow any 1100 0.0.0.0/0 any 0.0.0.0/0 in
+-A ufw-user-input -p tcp --dport 1100 -j ACCEPT
+-A ufw-user-input -p udp --dport 1100 -j ACCEPT
+
+### END RULES ###
+
+
+
+# END OPENVPN RULES
+
