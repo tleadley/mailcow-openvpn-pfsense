@@ -44,7 +44,7 @@ Internet
 
 | Script | Purpose |
 |--------|---------|
-| `prepare-debian12.sh` | Updates system, installs OpenVPN + Easy-RSA, disables IPv6, enables IP forwarding |
+| `prepare-debian.sh` | Updates system, installs OpenVPN + Easy-RSA, disables IPv6, enables IP forwarding |
 | `setup-openvpn-server.sh` | Creates modern OpenVPN server on **UDP 1100**, generates PKI and a pfSense-compatible client `.ovpn` |
 | `setup-ufw-rules.sh` | Resets UFW, reads client IP from `/var/log/openvpn/ipp.txt`, applies DNAT rules for almost all ports to the OpenVPN client |
 
