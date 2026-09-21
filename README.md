@@ -56,6 +56,7 @@ Internet
 - Root access
 - Public IPv4 address
 - At least one OpenVPN client connected before running the UFW script
+- [Mailing ports 25, 465, and 587 blocked by default](https://www.linode.com/community/questions/19082/i-just-created-my-first-linode-and-i-cant-send-emails-why)
 
 ---
 
