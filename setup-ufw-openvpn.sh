@@ -10,7 +10,7 @@ IPP_FILE="/var/log/openvpn/ipp.txt"
 BEFORE_RULES="/etc/ufw/before.rules"
 UFW_DEFAULTS="/etc/default/ufw"
 CLIENT_NAME="pfsense-client"          # Change if your client has a different name
-VPN_SUBNET="10.8.0.0/24"              # Recommended (your original had /8 which is too wide)
+VPN_SUBNET="10.8.0.0/24"              # Recommended subnet for this setup
 # ====================================================
 
 RED='\033[0;31m'
@@ -195,7 +195,7 @@ EOF
 # 5. Apply User Rules via ufw commands
 echo -e "\n${YELLOW}[3/5] Applying user rules...${NC}"
 
-# Drop SSH (as in your rules)
+# Drop SSH
 ufw deny 22/tcp comment 'Deny SSH'
 
 # Allow common services
@@ -216,7 +216,7 @@ ufw allow 995/udp comment 'POP3S'
 ufw allow 993/tcp comment 'IMAPS'
 ufw allow 993/udp comment 'IMAPS'
 
-# Broad multiport (as in your original rules)
+# Broad multiport
 ufw allow 25:65535/tcp comment 'Broad TCP range'
 
 # Allow OpenVPN port
