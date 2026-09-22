@@ -141,8 +141,8 @@ For defense in depth, only allow the following in the Linode Cloud Firewall:
 
 ## Related Blog Posts
 
-- [Part 1 – VPS & OpenVPN Setup](http://trevor.leadley.ca/mailcow-linode-openvpn-pfsense-part-1/index.html) *(replace with your actual link)*
-- [Part 2 – pfSense Configuration](http://trevor.leadley.ca/mailcow-linode-openvpn-pfsense-part-2/index.html) *(replace with your actual link)*
+- [Part 1 – VPS & OpenVPN Setup](https://trevor.leadley.ca/mailcow-linode-openvpn-pfsense-part-1/index.html) *(replace with your actual link)*
+- [Part 2 – pfSense Configuration](https://trevor.leadley.ca/mailcow-linode-openvpn-pfsense-part-2/index.html) *(replace with your actual link)*
 
 ---
 
