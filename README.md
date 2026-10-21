@@ -125,7 +125,7 @@ For defense in depth, only allow the following in the Linode Cloud Firewall:
 |----------|------|--------|
 | UDP      | 1100 | Allow  |
 | TCP      | 1100 | Allow  |
-| Everything else | - | Drop |
+| Everything else | - | Forward/Drop |
 
 ---
 
